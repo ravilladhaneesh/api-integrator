@@ -6,10 +6,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.integration.auth.AuthHandler;
 import com.example.integration.auth.AuthHandlerFactory;
+import com.example.integration.exception.IntegrationException;
+import com.example.integration.exception.UnauthorizedException;
 import com.example.integration.model.ApiConfig;
 import com.example.integration.model.ApiRequestConfig;
 
@@ -38,12 +41,13 @@ public class GenericApiExecutor {
 
         HttpEntity<Void> entity = new HttpEntity<>(headers);
         String url = apiConfig.getBaseUrl() + requestConfig.getEndpoint();
-
-        return restTemplate.exchange(
-                url,
-                HttpMethod.valueOf(requestConfig.getHttpMethod()),
-                entity,
-                String.class
-        );
-    }
+        
+		try {
+			return restTemplate.exchange(url, HttpMethod.valueOf(requestConfig.getHttpMethod()), entity, String.class);
+		} catch (HttpClientErrorException.Unauthorized ex) {
+			throw new UnauthorizedException("Invalid or expired API token");
+		} catch (Exception ex) {
+			throw new IntegrationException("Error calling external API", ex);
+		}
+	}
 }
