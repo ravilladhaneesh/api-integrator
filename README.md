@@ -71,7 +71,7 @@ Stores application-level configuration (1 row per app).
 | --------- | ------------------------------------- |
 | app_name  | Application name (e.g., CALENDLY)     |
 | base_url  | Base API URL                          |
-| auth_type | Authentication type (BEARER_TOKEN)    |
+| auth_type | Authentication type (BEARER_TOKEN, OAuth2)|
 | headers   | Authentication headers stored as JSON |
 
 ---
