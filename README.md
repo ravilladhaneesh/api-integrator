@@ -74,12 +74,6 @@ Stores application-level configuration (1 row per app).
 | auth_type | Authentication type (BEARER_TOKEN)    |
 | headers   | Authentication headers stored as JSON |
 
-------|-------------|
-| app_name | Application name (e.g., CALENDLY) |
-| base_url | Base API URL |
-| auth_type | Authentication type |
-| headers | Auth headers (JSON) |
-
 ---
 
 ### api_request_config
@@ -190,7 +184,7 @@ Adding a new SaaS integration requires:
 1. Inserting a new row into `api_config`
 2. Adding one or more rows into `api_request_config`
 
-**No code changes or redeployments required.**
+**No code changes or redeployments required.** (except business logic, if the request/response follows a different schema).
 
 ---
 
