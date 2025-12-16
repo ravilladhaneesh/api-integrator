@@ -1,5 +1,5 @@
 INSERT INTO api_config (id, app_name, base_url, auth_type, headers)
-VALUES (1, 'CALENDLY', 'https://api.calendly.com', 'BEARER',
+VALUES (1, 'CALENDLY', 'https://api.calendly.com', 'BEARER_TOKEN',
 '{"Authorization":"Bearer YOUR_TOKEN"}');
 
 INSERT INTO api_request_config (id, app_name, endpoint, http_method, response_mapping)
