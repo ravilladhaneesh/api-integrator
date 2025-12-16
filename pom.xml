@@ -13,6 +13,7 @@
   <groupId>com.example</groupId>
   <artifactId>integration-service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <description>Application to integrate APIs</description>
 
   <properties>
     <java.version>17</java.version>
